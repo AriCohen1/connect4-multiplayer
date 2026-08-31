@@ -5,7 +5,7 @@ Two-player Connect 4 over TCP. Authoritative server, thin clients.
 Work in progress.
 
 ## Status
-- [x] Game logic
+- [] Game logic
 - [ ] Wire protocol
 - [ ] Server
 - [ ] JavaFX client
