@@ -43,6 +43,8 @@ public class Grid {
         int piecesInARowCount = 0;
         Cell piecesInARowColour = null;
         for (Cell[] column : grid) {
+            piecesInARowCount = 0;
+            piecesInARowColour = null;
             for (Cell cell: column) {
                 if (cell != piecesInARowColour) {
                     piecesInARowCount = 1;
@@ -51,7 +53,7 @@ public class Grid {
                 else {
                     piecesInARowCount += 1;
                 }
-                if (piecesInARowCount == 4) {
+                if (piecesInARowCount == 4 && piecesInARowColour != Cell.EMPTY && piecesInARowColour != null) {
                     System.out.println(piecesInARowColour + "wins!!!");
                     gameOver(piecesInARowColour);
                 }
