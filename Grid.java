@@ -40,22 +40,22 @@ public class Grid {
     }
 
     private void checkVerticalWin() {
-        int piecesInARowCount = 0;
-        Cell piecesInARowColour = null;
+        int runLength = 0;
+        Cell runColour = null;
         for (Cell[] column : grid) {
-            piecesInARowCount = 0;
-            piecesInARowColour = null;
+            runLength = 0;
+            runColour = null;
             for (Cell cell: column) {
-                if (cell != piecesInARowColour) {
-                    piecesInARowCount = 1;
-                    piecesInARowColour = cell;
+                if (cell != runColour) {
+                    runLength = 1;
+                    runColour = cell;
                 }
                 else {
-                    piecesInARowCount += 1;
+                    runLength += 1;
                 }
-                if (piecesInARowCount == 4 && piecesInARowColour != Cell.EMPTY && piecesInARowColour != null) {
-                    System.out.println(piecesInARowColour + "wins!!!");
-                    gameOver(piecesInARowColour);
+                if (runLength == 4 && runColour != Cell.EMPTY && runColour != null) {
+                    System.out.println(runColour + "wins!!!");
+                    gameOver(runColour);
                 }
                 
             }
@@ -63,10 +63,40 @@ public class Grid {
 
     }
     private void checkHorizontalWin() {
+        int runLength = 0;
+        Cell runColour = null;
+        for (Cell[] row : getGridRows()) {
+            runLength = 0;
+            runColour = null;
+            for (Cell cell: row) {
+                if (cell != runColour) {
+                    runLength = 1;
+                    runColour = cell;
+                }
+                else {
+                    runLength += 1;
+                }
+                if (runLength == 4 && runColour != Cell.EMPTY && runColour != null) {
+                    System.out.println(runColour + "wins!!!");
+                    gameOver(runColour);
+                }
+                
+            }
+        }
 
     }
     private void checkDiagonalWin() {
 
+    }
+
+    private Cell[][] getGridRows() {
+        Cell[][] arrayOfRows = new Cell[7][6];
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 6; j++) {
+                arrayOfRows[j][i] =  grid[i][j];
+            }
+        }
+        return arrayOfRows;
     }
 
     private void gameOver(Cell winningColour){
