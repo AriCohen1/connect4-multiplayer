@@ -30,13 +30,46 @@ public class Grid {
             }
                 
         }
-        
         checkWin();
-        
     }
 
-    public void checkWin(){
-        
+    private void checkWin(){
+        checkVerticalWin();
+        checkHorizontalWin();
+        checkDiagonalWin();
     }
+
+    private void checkVerticalWin() {
+        int piecesInARowCount = 0;
+        Cell piecesInARowColour = null;
+        for (Cell[] column : grid) {
+            for (Cell cell: column) {
+                if (cell != piecesInARowColour) {
+                    piecesInARowCount = 1;
+                    piecesInARowColour = cell;
+                }
+                else {
+                    piecesInARowCount += 1;
+                }
+                if (piecesInARowCount == 4) {
+                    System.out.println(piecesInARowColour + "wins!!!");
+                    gameOver(piecesInARowColour);
+                }
+                
+            }
+        }
+
+    }
+    private void checkHorizontalWin() {
+
+    }
+    private void checkDiagonalWin() {
+
+    }
+
+    private void gameOver(Cell winningColour){
+
+    }
+    
 
 }
