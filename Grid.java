@@ -1,30 +1,30 @@
 import java.util.Arrays;
 
 public class Grid {
-    private Cell[][] grid = new Cell[6][7];
+    private Cell[][] grid = new Cell[7][6]; // board is [column][row], [0][0] represents bottom left 
 
     public Grid() {
-        for (Cell[] row : grid) {
-            Arrays.fill(row, Cell.EMPTY);
+        for (Cell[] column : grid) {
+            Arrays.fill(column, Cell.EMPTY);
         }
     }
 
     public void drop(int column, Cell player) {
 
         // Check column bounds
-        if (column < 0 || column > 5) {
+        if (column < 0 || column > 6) {
             System.out.println("Column " + column + " is out of bounds");
             return;
         }
 
-            // Check whether column is full
-        if (grid[column][6] != Cell.EMPTY) {
+        // Check whether column is full
+        if (grid[column][5] != Cell.EMPTY) {
             System.out.println("Column is full");
             return;
         }
 
-        for (int i = 0; i < 7; i++) {
-            if (grid[column][i] != Cell.EMPTY) {
+        for (int i = 0; i < 6; i++) {
+            if (grid[column][i] == Cell.EMPTY) {
                 grid[column][i] = player;
                 break;
             }
@@ -46,6 +46,7 @@ public class Grid {
             runLength = 0;
             runColour = null;
             for (Cell cell: column) {
+                if (cell == Cell.EMPTY) break;
                 if (cell != runColour) {
                     runLength = 1;
                     runColour = cell;
@@ -90,10 +91,10 @@ public class Grid {
     }
 
     private Cell[][] getGridRows() {
-        Cell[][] arrayOfRows = new Cell[7][6];
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 6; j++) {
-                arrayOfRows[j][i] =  grid[i][j];
+        Cell[][] arrayOfRows = new Cell[6][7];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                arrayOfRows[i][j] =  grid[j][i];
             }
         }
         return arrayOfRows;
